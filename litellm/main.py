@@ -153,6 +153,7 @@ from .llms.nlp_cloud.chat.handler import completion as nlp_cloud_chat_completion
 from .llms.ollama.completion import handler as ollama
 from .llms.oobabooga.chat import oobabooga
 from .llms.openai.completion.handler import OpenAITextCompletion
+from .llms.wandb.completion.handler import WandbTextCompletion
 from .llms.openai.image_variations.handler import OpenAIImageVariationsHandler
 from .llms.openai.openai import OpenAIChatCompletion
 from .llms.openai.transcriptions.handler import OpenAIAudioTranscription
@@ -219,6 +220,7 @@ from litellm.utils import (
 ####### ENVIRONMENT VARIABLES ###################
 openai_chat_completions = OpenAIChatCompletion()
 openai_text_completions = OpenAITextCompletion()
+wandb_text_completions = WandbTextCompletion()
 openai_audio_transcriptions = OpenAIAudioTranscription()
 openai_image_variations = OpenAIImageVariationsHandler()
 groq_chat_completions = GroqChatCompletion()
@@ -1603,6 +1605,83 @@ def completion(  # type: ignore # noqa: PLR0915
                     original_response=response,
                     additional_args={"headers": headers},
                 )
+        elif custom_llm_provider == "wandb":
+            # W&B Inference text completion
+            api_base = (
+                api_base
+                or litellm.api_base  
+                or get_secret("WANDB_API_BASE")
+                or "https://api.inference.wandb.ai/v1"
+            )
+            
+            # set API KEY
+            api_key = (
+                api_key
+                or litellm.api_key
+                or get_secret("WANDB_API_KEY")
+            )
+
+            headers = headers or litellm.headers
+
+            if extra_headers is not None:
+                optional_params["extra_headers"] = extra_headers
+
+            ## LOAD CONFIG - if set
+            config = litellm.WandbTextCompletionConfig.get_config()
+            for k, v in config.items():
+                if (
+                    k not in optional_params
+                ):  # completion(top_k=3) > wandb_config(top_k=3) <- allows for dynamic variables to be passed in
+                    optional_params[k] = v
+
+            if (
+                len(messages) > 0
+                and "content" in messages[0]
+                and isinstance(messages[0]["content"], list)
+            ):
+                # text-davinci-003 can accept a string or array, if it's an array, assume the array is set in messages[0]['content']
+                # https://platform.openai.com/docs/api-reference/completions/create
+                prompt = messages[0]["content"]
+            else:
+                prompt = " ".join([message["content"] for message in messages])  # type: ignore
+
+            ## COMPLETION CALL
+            _response = wandb_text_completions.completion(
+                model=model,
+                messages=messages,
+                model_response=model_response,
+                print_verbose=print_verbose,
+                api_key=api_key,
+                custom_llm_provider=custom_llm_provider,
+                api_base=api_base,
+                acompletion=acompletion,
+                client=client,  # pass AsyncOpenAI, OpenAI client
+                logging_obj=logging,
+                optional_params=optional_params,
+                litellm_params=litellm_params,
+                logger_fn=logger_fn,
+                timeout=timeout,  # type: ignore
+            )
+
+            if (
+                optional_params.get("stream", False) is False
+                and acompletion is False
+                and text_completion is False
+            ):
+                # convert to chat completion response
+                _response = litellm.WandbTextCompletionConfig().convert_to_chat_model_response_object(
+                    response_object=_response, model_response_object=model_response
+                )
+
+            if optional_params.get("stream", False) or acompletion is True:
+                ## LOGGING
+                logging.post_call(
+                    input=messages,
+                    api_key=api_key,
+                    original_response=_response,
+                    additional_args={"headers": headers},
+                )
+            response = _response
         elif (
             custom_llm_provider == "text-completion-openai"
             or "ft:babbage-002" in model
