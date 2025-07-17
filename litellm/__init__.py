@@ -476,6 +476,7 @@ nscale_models: List = []
 nebius_models: List = []
 nebius_embedding_models: List = []
 deepgram_models: List = []
+wandb_models: List = []
 
 
 def is_bedrock_pricing_only_model(key: str) -> bool:
@@ -649,6 +650,8 @@ def add_known_models():
             featherless_ai_models.append(key)
         elif value.get("litellm_provider") == "deepgram":
             deepgram_models.append(key)
+        elif value.get("litellm_provider") == "wandb":
+            wandb_models.append(key)
 
 
 add_known_models()

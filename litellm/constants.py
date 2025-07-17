@@ -369,6 +369,7 @@ openai_compatible_endpoints: List = [
     "api.featherless.ai/v1",
     "inference.api.nscale.com/v1",
     "api.studio.nebius.ai/v1",
+    "api.inference.wandb.ai/v1",
 ]
 
 
@@ -404,6 +405,7 @@ openai_compatible_providers: List = [
     "featherless_ai",
     "nscale",
     "nebius",
+    "wandb",
 ]
 openai_text_completion_compatible_providers: List = (
     [  # providers that support `/v1/completions`

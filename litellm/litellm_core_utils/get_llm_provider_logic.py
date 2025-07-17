@@ -231,6 +231,9 @@ def get_llm_provider(  # noqa: PLR0915
                     elif endpoint == litellm.NscaleConfig.API_BASE_URL:
                         custom_llm_provider = "nscale"
                         dynamic_api_key = litellm.NscaleConfig.get_api_key()
+                    elif endpoint == "api.inference.wandb.ai/v1":
+                        custom_llm_provider = "wandb"
+                        dynamic_api_key = get_secret_str("WANDB_API_KEY")
 
                     if api_base is not None and not isinstance(api_base, str):
                         raise Exception(
@@ -336,6 +339,8 @@ def get_llm_provider(  # noqa: PLR0915
             custom_llm_provider = "openai"
         elif model in litellm.empower_models:
             custom_llm_provider = "empower"
+        elif model in litellm.wandb_models:
+            custom_llm_provider = "wandb"
         elif model == "*":
             custom_llm_provider = "openai"
         if not custom_llm_provider:
@@ -474,6 +479,13 @@ def _get_openai_compatible_provider_info(  # noqa: PLR0915
             or "https://api.studio.nebius.ai/v1"
         )  # type: ignore
         dynamic_api_key = api_key or get_secret_str("NEBIUS_API_KEY")
+    elif custom_llm_provider == "wandb":
+        api_base = (
+            api_base
+            or get_secret("WANDB_API_BASE")
+            or "https://api.inference.wandb.ai/v1"
+        )  # type: ignore
+        dynamic_api_key = api_key or get_secret_str("WANDB_API_KEY")
     elif (custom_llm_provider == "ai21_chat") or (
         custom_llm_provider == "ai21" and model in litellm.ai21_chat_models
     ):

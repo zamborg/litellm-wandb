@@ -2234,6 +2234,9 @@ def register_model(model_cost: Union[str, dict]):  # noqa: PLR0915
         elif value.get("litellm_provider") == "novita":
             if key not in litellm.novita_models:
                 litellm.novita_models.append(key)
+        elif value.get("litellm_provider") == "wandb":
+            if key not in litellm.wandb_models:
+                litellm.wandb_models.append(key)
     return model_cost
 
 
