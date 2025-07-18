@@ -734,6 +734,7 @@ model_list = (
     + featherless_ai_models
     + nscale_models
     + deepgram_models
+    + wandb_models
 )
 
 model_list_set = set(model_list)
@@ -798,6 +799,7 @@ models_by_provider: dict = {
     "nscale": nscale_models,
     "featherless_ai": featherless_ai_models,
     "deepgram": deepgram_models,
+    "wandb": wandb_models,
 }
 
 # mapping for those models which have larger equivalents

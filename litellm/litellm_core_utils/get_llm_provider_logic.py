@@ -101,6 +101,7 @@ def get_llm_provider(  # noqa: PLR0915
 
     Return model, custom_llm_provider, dynamic_api_key, api_base
     """
+    print(f"GARLIC: {model=}, {custom_llm_provider=}, {api_base=}, {api_key=}, {litellm_params=}")
     try:
         if litellm.LiteLLMProxyChatConfig._should_use_litellm_proxy_by_default(
             litellm_params=litellm_params
@@ -172,6 +173,7 @@ def get_llm_provider(  # noqa: PLR0915
                 )
             return model, custom_llm_provider, dynamic_api_key, api_base
         # check if api base is a known openai compatible endpoint
+        print(f"GARLIC: {custom_llm_provider=}")
         if api_base:
             for endpoint in litellm.openai_compatible_endpoints:
                 if endpoint in api_base:

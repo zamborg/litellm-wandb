@@ -10,7 +10,20 @@ Requirements:
 """
 
 import os
-from litellm import completion
+from litellm import completion, register_model
+
+# Register W&B models since they may not be in the remote model list yet
+register_model({
+    "wandb/Llama-3.1-8B-Instruct": {
+        "max_tokens": 8192,
+        "max_input_tokens": 8192,
+        "max_output_tokens": 8192,
+        "input_cost_per_token": 0.0,
+        "output_cost_per_token": 0.0,
+        "litellm_provider": "wandb",
+        "mode": "chat",
+    }
+})
 
 def basic_completion_example():
     """Basic example of using W&B with LiteLLM"""
@@ -127,6 +140,9 @@ def error_handling_example():
 
 def main():
     """Run all examples"""
+    print("Note: This example registers W&B models locally.")
+    print("In production, W&B models will be available once the model list is updated.\n")
+    
     # Check if API key is set
     if not os.getenv("WANDB_API_KEY"):
         print("Error: Please set WANDB_API_KEY environment variable")
