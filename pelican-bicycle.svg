@@ -26,25 +26,25 @@
   <ellipse cx="200" cy="120" rx="35" ry="25" fill="white" stroke="black" stroke-width="2"/>
   
   <!-- Pelican neck -->
-  <ellipse cx="175" cy="100" rx="8" ry="20" fill="white" stroke="black" stroke-width="2"/>
+  <ellipse cx="225" cy="100" rx="8" ry="20" fill="white" stroke="black" stroke-width="2"/>
   
   <!-- Pelican head -->
-  <ellipse cx="170" cy="75" rx="15" ry="12" fill="white" stroke="black" stroke-width="2"/>
+  <ellipse cx="230" cy="75" rx="15" ry="12" fill="white" stroke="black" stroke-width="2"/>
   
   <!-- Pelican beak -->
-  <polygon points="155,75 135,80 155,85" fill="orange" stroke="black" stroke-width="1"/>
+  <polygon points="245,75 265,80 245,85" fill="orange" stroke="black" stroke-width="1"/>
   
   <!-- Pelican pouch -->
-  <path d="M 135 80 Q 125 90 135 95 Q 145 90 135 80" fill="orange" stroke="black" stroke-width="1"/>
+  <path d="M 265 80 Q 275 90 265 95 Q 255 90 265 80" fill="orange" stroke="black" stroke-width="1"/>
   
   <!-- Pelican eye -->
-  <circle cx="165" cy="70" r="3" fill="black"/>
+  <circle cx="235" cy="70" r="3" fill="black"/>
   
   <!-- Pelican wing -->
-  <ellipse cx="210" cy="115" rx="20" ry="10" fill="lightgray" stroke="black" stroke-width="1"/>
+  <ellipse cx="190" cy="115" rx="20" ry="10" fill="lightgray" stroke="black" stroke-width="1"/>
   
   <!-- Pelican tail -->
-  <polygon points="235,120 250,115 255,125 240,130" fill="lightgray" stroke="black" stroke-width="1"/>
+  <polygon points="165,120 150,115 145,125 160,130" fill="lightgray" stroke="black" stroke-width="1"/>
   
   <!-- Pelican legs on pedals -->
   <line x1="190" y1="140" x2="160" y2="180" stroke="orange" stroke-width="3"/>
