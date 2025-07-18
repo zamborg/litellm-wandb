@@ -1,0 +1,60 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bicycle wheels -->
+  <circle cx="80" cy="200" r="40" fill="none" stroke="black" stroke-width="3"/>
+  <circle cx="280" cy="200" r="40" fill="none" stroke="black" stroke-width="3"/>
+  
+  <!-- Bicycle spokes -->
+  <line x1="80" y1="160" x2="80" y2="240" stroke="black" stroke-width="1"/>
+  <line x1="40" y1="200" x2="120" y2="200" stroke="black" stroke-width="1"/>
+  <line x1="280" y1="160" x2="280" y2="240" stroke="black" stroke-width="1"/>
+  <line x1="240" y1="200" x2="320" y2="200" stroke="black" stroke-width="1"/>
+  
+  <!-- Bicycle frame -->
+  <line x1="80" y1="200" x2="180" y2="140" stroke="black" stroke-width="4"/>
+  <line x1="180" y1="140" x2="280" y2="200" stroke="black" stroke-width="4"/>
+  <line x1="180" y1="140" x2="160" y2="200" stroke="black" stroke-width="4"/>
+  <line x1="160" y1="200" x2="280" y2="200" stroke="black" stroke-width="4"/>
+  
+  <!-- Bicycle seat -->
+  <ellipse cx="200" cy="140" rx="20" ry="5" fill="brown"/>
+  
+  <!-- Bicycle handlebars -->
+  <line x1="180" y1="140" x2="180" y2="120" stroke="black" stroke-width="3"/>
+  <line x1="165" y1="120" x2="195" y2="120" stroke="black" stroke-width="3"/>
+  
+  <!-- Pelican body -->
+  <ellipse cx="200" cy="120" rx="35" ry="25" fill="white" stroke="black" stroke-width="2"/>
+  
+  <!-- Pelican neck -->
+  <ellipse cx="175" cy="100" rx="8" ry="20" fill="white" stroke="black" stroke-width="2"/>
+  
+  <!-- Pelican head -->
+  <ellipse cx="170" cy="75" rx="15" ry="12" fill="white" stroke="black" stroke-width="2"/>
+  
+  <!-- Pelican beak -->
+  <polygon points="155,75 135,80 155,85" fill="orange" stroke="black" stroke-width="1"/>
+  
+  <!-- Pelican pouch -->
+  <path d="M 135 80 Q 125 90 135 95 Q 145 90 135 80" fill="orange" stroke="black" stroke-width="1"/>
+  
+  <!-- Pelican eye -->
+  <circle cx="165" cy="70" r="3" fill="black"/>
+  
+  <!-- Pelican wing -->
+  <ellipse cx="210" cy="115" rx="20" ry="10" fill="lightgray" stroke="black" stroke-width="1"/>
+  
+  <!-- Pelican tail -->
+  <polygon points="235,120 250,115 255,125 240,130" fill="lightgray" stroke="black" stroke-width="1"/>
+  
+  <!-- Pelican legs on pedals -->
+  <line x1="190" y1="140" x2="160" y2="180" stroke="orange" stroke-width="3"/>
+  <line x1="210" y1="140" x2="160" y2="180" stroke="orange" stroke-width="3"/>
+  
+  <!-- Pedals -->
+  <ellipse cx="160" cy="180" rx="8" ry="4" fill="gray" stroke="black" stroke-width="1"/>
+  
+  <!-- Motion lines -->
+  <line x1="320" y1="180" x2="340" y2="175" stroke="gray" stroke-width="1"/>
+  <line x1="320" y1="190" x2="345" y2="185" stroke="gray" stroke-width="1"/>
+  <line x1="320" y1="200" x2="350" y2="195" stroke="gray" stroke-width="1"/>
+</svg>
