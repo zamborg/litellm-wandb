@@ -20903,6 +20903,7 @@
         "output_cost_per_token": 0.035,
         "litellm_provider": "wandb",
         "mode": "chat"
+    },
     "ovhcloud/Qwen2.5-VL-72B-Instruct": {
         "max_tokens": 32000,
         "max_input_tokens": 32000,
